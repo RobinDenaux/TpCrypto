@@ -98,22 +98,6 @@ public class SignatureManager {
 		}
 		return pKUser;
 	}
-	
-	private void addUser(String name, String pass, String ksPass){
-		KeyPair kpUser = generateKeyPair();
-		KeyStore ks;
-		try {
-			ks = KeyStore.getInstance("JCEKS");
-			InputStream is = new BufferedInputStream(new FileInputStream(ksName));
-			ks.load(is, ksPass.toCharArray());
-			//TODO remplacer par une PrivateKeyEntry
-			ks.setKeyEntry(name, kpUser.getPrivate(), pass.toCharArray(), null);
-			OutputStream os = new BufferedOutputStream(new FileOutputStream(ksName));
-			ks.store(os, ksPass.toCharArray());
-		} catch (KeyStoreException | NoSuchAlgorithmException | CertificateException | IOException e) {
-			e.printStackTrace();
-		}
-	}
 
 	public KeyPair generateKeyPair(){
 		KeyPairGenerator kpg;
@@ -150,7 +134,6 @@ public class SignatureManager {
 	}
 
 	public void saveSignature(String absolutePath, String name, String pass, String kspass) {
-		// TODO Loïc
 		byte[] signature = generateSignature(absolutePath, name, pass, kspass);
 		
 		CharBuffer cbuf = CharBuffer.wrap(Main.name.toCharArray());
