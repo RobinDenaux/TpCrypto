@@ -8,6 +8,7 @@ package Affichage;
 
 import java.awt.Frame;
 import java.io.File;
+import java.io.IOException;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -19,6 +20,8 @@ import tpCrypto.Main;
  * @author Nabaki
  */
 public class Identifier extends javax.swing.JDialog {
+	public String Sname;
+	public byte[] signature;
 	private Frame parent;
 	public File file;
     /**
@@ -159,7 +162,12 @@ public class Identifier extends javax.swing.JDialog {
     }                                        
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {                                     
-        Main.sigManager.saveSignature(file.getAbsolutePath(), Main.name, Main.pass, Main.kspass);
+        try {
+			Main.sigManager.loadSignature(file.getAbsolutePath(), this);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
     
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {                                      

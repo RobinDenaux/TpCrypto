@@ -27,6 +27,7 @@ import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 
+import Affichage.Identifier;
 import tpCrypto.Main;
 
 public class SignatureManager {
@@ -173,4 +174,18 @@ public class SignatureManager {
 			e.printStackTrace();
 		}
 	}
+	
+	public void loadSignature(String absolutePath, Identifier identifier) throws IOException{
+		File file = new File(absolutePath+".sig");
+		FileInputStream fileIn = new FileInputStream(file);
+		byte[] taille = new byte[1];
+		fileIn.read(taille);
+		byte[] Bname = new byte[taille[0]];
+		fileIn.read(Bname);
+		byte[] signature = new byte[fileIn.available()];
+		fileIn.read(signature);
+		identifier.signature = signature;
+		identifier.Sname = new String(Bname);
+	}
+
 }
