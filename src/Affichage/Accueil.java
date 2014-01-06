@@ -63,6 +63,16 @@ public class Accueil extends javax.swing.JDialog {
 
         jButton2.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
         jButton2.setText("Identifier un fichier");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Sylfaen", 1, 30)); // NOI18N
         jLabel1.setText("Cryptographie");
@@ -128,8 +138,11 @@ public class Accueil extends javax.swing.JDialog {
     }                                     
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {                                      
-        // TODO add your handling code here:
-    }    
+        JFrame frame = new JFrame();
+        Identifier identifier = new Identifier(frame, true);
+        identifier.launch();
+        parent.dispose();
+    }     
     
     /**
      * @param args the command line arguments
