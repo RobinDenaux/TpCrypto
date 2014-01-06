@@ -95,6 +95,8 @@ public class Signer extends javax.swing.JDialog {
 
         jLabel5.setFont(new java.awt.Font("Sylfaen", 2, 15)); // NOI18N
         jLabel5.setText("Votre mot de passe :");
+        
+        jTextField2.setText(Main.name);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
