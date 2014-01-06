@@ -169,7 +169,13 @@ public class Signer extends javax.swing.JDialog {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {     
     	Main.name = jTextField2.getText();
     	Main.pass = jPasswordField2.getText();
+    	try{
         Main.sigManager.saveSignature(file.getAbsolutePath(), Main.name, Main.pass, Main.kspass);
+		jButton1.setText("Signer - succes");
+    	}
+    	catch(Exception e){
+    		jButton1.setText("Signer - echec");
+    	}
         
     }   
     

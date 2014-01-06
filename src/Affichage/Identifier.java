@@ -166,8 +166,11 @@ public class Identifier extends javax.swing.JDialog {
 			Main.sigManager.loadSignature(file.getAbsolutePath(), this);
 			if(Main.sigManager.verify(file.getAbsolutePath(), signature, Sname, Main.kspass))
 				jLabel4.setText(Sname);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			else
+				jLabel4.setText("aucun des utilisateurs stockés");
+			jButton1.setText("Identifier");
+		} catch (Exception e) {
+			jButton1.setText("Identifier - echec");
 			e.printStackTrace();
 		}
     }
