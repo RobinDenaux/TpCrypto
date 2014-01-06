@@ -7,12 +7,17 @@ import tpCrypto.denaux.SignatureManager;
 
 public class Main {
 
+	public static SignatureManager sigManager;
+	public static String name = "Robin";
+	public static String pass = "keypass";
+	public static String kspass = "kspass";
+	
 	public static void main(String[] args) {
-		SignatureManager sigManager = new SignatureManager("store.ks");
+		sigManager = new SignatureManager("store.ks");
 		
-		byte[] tmp = sigManager.generateSignature("docTest.txt", "Robin", "keypass", "kspass");
+		byte[] tmp = sigManager.generateSignature("docTest.txt", name, pass, kspass);
 		
-		System.out.println(sigManager.verify("docTest2.txt", tmp, "Robin", "kspass"));
+		System.out.println(sigManager.verify("docTest2.txt", tmp, name, kspass));
 	
 		JFrame frame = new JFrame();
 		Accueil accueil = new Accueil(frame, true);

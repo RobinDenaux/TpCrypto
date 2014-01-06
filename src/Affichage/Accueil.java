@@ -6,17 +6,23 @@
 
 package Affichage;
 
+import java.awt.Frame;
+
+import javax.swing.JFrame;
+
 /**
  *
  * @author Nabaki
  */
 public class Accueil extends javax.swing.JDialog {
 
+	private Frame parent;
     /**
      * Creates new form NewJDialog
      */
     public Accueil(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        this.parent = parent;
         initComponents();
     }
 
@@ -51,7 +57,7 @@ public class Accueil extends javax.swing.JDialog {
         });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                
             }
         });
 
@@ -112,17 +118,19 @@ public class Accueil extends javax.swing.JDialog {
         );
 
         pack();
-    }// </editor-fold>                        
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
-        
-    }                                        
+    }// </editor-fold>                                       
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {                                      
-        // TODO add your handling code here:
+        JFrame frame = new JFrame();
+        Signer signer = new Signer(frame, true);
+        signer.launch();
+        parent.dispose();
     }                                     
 
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {                                      
+        // TODO add your handling code here:
+    }    
+    
     /**
      * @param args the command line arguments
      */

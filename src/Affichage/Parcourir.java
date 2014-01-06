@@ -6,17 +6,21 @@
 
 package Affichage;
 
+import java.awt.Frame;
+
 /**
  *
  * @author Nabaki
  */
 public class Parcourir extends javax.swing.JDialog {
+	Frame parent;
 
     /**
      * Creates new form NewJDialog
      */
     public Parcourir(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        this.parent = parent;
         initComponents();
     }
 

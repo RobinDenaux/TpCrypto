@@ -6,17 +6,27 @@
 
 package Affichage;
 
+import java.awt.Frame;
+import java.io.File;
+
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+
+import tpCrypto.Main;
+
 /**
  *
  * @author Nabaki
  */
 public class Signer extends javax.swing.JDialog {
-
+	private Frame parent;
+	public File file;
     /**
      * Creates new form NewJDialog
      */
     public Signer(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        this.parent = parent;
         initComponents();
     }
 
@@ -55,6 +65,16 @@ public class Signer extends javax.swing.JDialog {
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
             }
         });
 
@@ -145,8 +165,30 @@ public class Signer extends javax.swing.JDialog {
     }                                        
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {                                      
-        // TODO add your handling code here:
-    }                                     
+        Main.sigManager.saveSignature(file.getAbsolutePath(), Main.name, Main.pass, Main.kspass);
+        
+    }   
+    
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {                                      
+    	 JFrame frame = new JFrame();
+         Accueil accueil = new Accueil(frame, true);
+         accueil.launch();
+         parent.dispose();
+    }
+    
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {                                      
+        JFrame frame = new JFrame();
+        Parcourir parcourir = new Parcourir(frame, true);
+        JFileChooser choose = new JFileChooser();
+        int status = choose.showOpenDialog(this);
+        
+        if (status == JFileChooser.APPROVE_OPTION) {
+            file = choose.getSelectedFile();
+            jTextField1.setText(file.getAbsolutePath()+file.getName());
+            System.out.println(file.getParent());
+            System.out.println(file.getName());
+        }
+    }
 
     /**
      * @param args the command line arguments

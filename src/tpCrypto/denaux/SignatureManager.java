@@ -142,4 +142,10 @@ public class SignatureManager {
 		}
 	return false;
 	}
+
+	public void saveSignature(String absolutePath, String name, String pass, String kspass) {
+		// TODO Loïc
+		byte[] signature = generateSignature(absolutePath, name, pass, kspass);
+		
+	}
 }
