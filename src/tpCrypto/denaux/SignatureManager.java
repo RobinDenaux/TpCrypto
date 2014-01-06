@@ -76,7 +76,7 @@ public class SignatureManager {
 		return pKUser;
 	}
 	
-	private PublicKey getPubKey(String name, String pass, String ksPass){
+	private PublicKey getPubKey(String name, String ksPass){
 		PublicKey pKUser;
 		KeyStore ks;
 		
@@ -124,11 +124,11 @@ public class SignatureManager {
 		return kp;
 	}
 
-	public boolean verify(String filePath, byte[] sig, String name, String pass, String ksPass){
+	public boolean verify(String filePath, byte[] sig, String name, String ksPass){
 		Signature signer;
 		try {
 			signer = Signature.getInstance("SHA1withDSA");
-			signer.initVerify(getPubKey(name, pass, ksPass));
+			signer.initVerify(getPubKey(name, ksPass));
 			   BufferedInputStream bin = new BufferedInputStream(new FileInputStream(filePath));
 			   byte[] buffer = new byte[1024];
 			   int nr;

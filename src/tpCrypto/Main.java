@@ -9,7 +9,7 @@ public class Main {
 		
 		byte[] tmp = sigManager.generateSignature("docTest.txt", "Robin", "keypass", "kspass");
 		
-		System.out.println(sigManager.verify("docTest2.txt", tmp, "Robin", "keypass", "kspass"));
+		System.out.println(sigManager.verify("docTest2.txt", tmp, "Robin", "kspass"));
 	}
 
 }
