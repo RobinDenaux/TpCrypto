@@ -10,6 +10,8 @@ import java.awt.Frame;
 
 import javax.swing.JFrame;
 
+import tpCrypto.Main;
+
 /**
  *
  * @author Nabaki
@@ -130,7 +132,9 @@ public class Accueil extends javax.swing.JDialog {
         pack();
     }// </editor-fold>                                       
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {                                      
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {       
+        Main.kspass = jPasswordField1.getText();
+        
         JFrame frame = new JFrame();
         Signer signer = new Signer(frame, true);
         signer.launch();

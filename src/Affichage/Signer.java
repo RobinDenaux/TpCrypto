@@ -166,7 +166,9 @@ public class Signer extends javax.swing.JDialog {
         // TODO add your handling code here:
     }                                        
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {                                      
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {     
+    	Main.name = jTextField2.getText();
+    	Main.pass = jPasswordField2.getText();
         Main.sigManager.saveSignature(file.getAbsolutePath(), Main.name, Main.pass, Main.kspass);
         
     }   
@@ -186,9 +188,7 @@ public class Signer extends javax.swing.JDialog {
         
         if (status == JFileChooser.APPROVE_OPTION) {
             file = choose.getSelectedFile();
-            jTextField1.setText(file.getAbsolutePath()+file.getName());
-            System.out.println(file.getParent());
-            System.out.println(file.getName());
+            jTextField1.setText(file.getAbsolutePath());
         }
     }
 

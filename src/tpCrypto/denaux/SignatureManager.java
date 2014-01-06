@@ -9,6 +9,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
+import java.nio.charset.Charset;
 import java.security.InvalidKeyException;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
@@ -23,6 +26,8 @@ import java.security.UnrecoverableKeyException;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
+
+import tpCrypto.Main;
 
 public class SignatureManager {
 	private String ksName;
@@ -147,5 +152,25 @@ public class SignatureManager {
 		// TODO Loïc
 		byte[] signature = generateSignature(absolutePath, name, pass, kspass);
 		
+		CharBuffer cbuf = CharBuffer.wrap(Main.name.toCharArray());
+		ByteBuffer bbuf = Charset.defaultCharset().encode(cbuf);
+		byte[] Bname = bbuf.array();
+		
+		byte[] result = new byte[Main.name.length()+signature.length+1];
+		result[0] = (byte)Main.name.length();
+		
+		for(int i=0; i<Main.name.length(); i++)
+			result[i+1] = Bname[i];
+		
+		for(int i=Main.name.length(); i<Main.name.length()+signature.length; i++)
+			result[i+1] = signature[i-Main.name.length()];
+		
+		try {
+			FileOutputStream fileOut = new FileOutputStream(new File(absolutePath+".sig"));
+			fileOut.write(result);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
