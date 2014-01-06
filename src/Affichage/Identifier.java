@@ -164,6 +164,8 @@ public class Identifier extends javax.swing.JDialog {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {                                     
         try {
 			Main.sigManager.loadSignature(file.getAbsolutePath(), this);
+			if(Main.sigManager.verify(file.getAbsolutePath(), signature, Sname, Main.kspass))
+				jLabel4.setText(Sname);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
